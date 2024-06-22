@@ -38,7 +38,7 @@ const Map = () => {
 
   return (
     <div className="relative h-screen w-screen">
-      <Button variant="outline" onClick={() => setDrawerOpen(true)} className="absolute top-4 left-4 z-10">
+      <Button variant="outline" onClick={() => setDrawerOpen(true)} className="absolute top-4 left-4 z-10 bg-white p-2 rounded-md shadow-md">
         Open Pump List
       </Button>
       <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
