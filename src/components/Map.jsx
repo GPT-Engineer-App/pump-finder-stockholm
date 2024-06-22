@@ -32,7 +32,16 @@ const Map = () => {
       />
       {pumps && pumps.map(pump => (
         <Marker key={pump.id} position={[pump.latitude, pump.longitude]} icon={customIcon}>
-          <Popup>{pump.name}</Popup>
+          <Popup>
+            <div>
+              <h2>{pump.name}</h2>
+              <p><strong>Address:</strong> {pump.address}</p>
+              <p><strong>Status:</strong> {pump.status}</p>
+              <p><strong>Model:</strong> {pump.model}</p>
+              <p><strong>Comment:</strong> {pump.comment}</p>
+              <a href={`https://www.google.com/maps/dir/?api=1&destination=${pump.latitude},${pump.longitude}`} target="_blank" rel="noopener noreferrer">Get Directions</a>
+            </div>
+          </Popup>
         </Marker>
       ))}
     </MapContainer>
