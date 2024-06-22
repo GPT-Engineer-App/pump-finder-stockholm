@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { usePumps } from '../integrations/supabase/index.js';
 import L from 'leaflet';
-# Remove the custom icon import
+
 // Use the built-in Leaflet icon
 const customIcon = new L.Icon({
   iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
@@ -13,7 +13,6 @@ const customIcon = new L.Icon({
   shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
   shadowSize: [41, 41]
 });
-
 
 const Map = () => {
   const { data: pumps, isLoading, error } = usePumps();
