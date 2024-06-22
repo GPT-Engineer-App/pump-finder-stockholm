@@ -3,6 +3,16 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { usePumps } from '../integrations/supabase/index.js';
 import L from 'leaflet';
+import pinIcon from '../assets/pin-icon.png';
+
+// Create a custom icon
+const customIcon = new L.Icon({
+  iconUrl: pinIcon,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
 
 
 const Map = () => {
@@ -22,7 +32,7 @@ const Map = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       {pumps && pumps.map(pump => (
-        <Marker key={pump.id} position={[pump.latitude, pump.longitude]}>
+        <Marker key={pump.id} position={[pump.latitude, pump.longitude]} icon={customIcon}>
           <Popup>{pump.name}</Popup>
         </Marker>
       ))}
