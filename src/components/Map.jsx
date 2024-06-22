@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { usePumps } from '../integrations/supabase/index.js';
@@ -15,6 +15,10 @@ const customPin = new L.Icon({
 const Map = () => {
   const { data: pumps, isLoading, error } = usePumps();
 
+  useEffect(() => {
+    console.log(pumps); // Debugging line to check the pumps data
+  }, [pumps]);
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
@@ -24,7 +28,7 @@ const Map = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      {pumps.map(pump => (
+      {pumps && pumps.map(pump => (
         <Marker key={pump.id} position={[pump.latitude, pump.longitude]} icon={customPin}>
           <Popup>{pump.name}</Popup>
         </Marker>
